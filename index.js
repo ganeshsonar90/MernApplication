@@ -19,11 +19,14 @@ const server=express();
 
 server.use(morgan('default'));
 server.use(express.json());
+server.set('view engine', 'ejs');
 server.use(cors());
 server.use(express.static(process.env.PUBLIC_DIR));
 // server.use('*',(req,res)=>{
 //     res.sendFile(path.resolve(__dirname,'build','index.html'));
 // })
+
+
 
 server.use('/products',productRouter.router);
 

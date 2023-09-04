@@ -2,6 +2,8 @@ const fs = require('fs');
 const model = require('../model/product');
 
 const { error } = require('console');
+const { ejs } = require('ejs');
+const { path, resolve } = require('path');
 
 //const data=JSON.parse(fs.readFileSync('data.json','utf-8'));
 //const products=data.products;
@@ -9,6 +11,46 @@ const { error } = require('console');
 
 const Product = model.Product;
 const Address = model.Address;
+
+exports.getAllProductsSSR = async (req, res) => {
+
+//   const user = {
+//     firstName: 'Tim',
+//     lastName: 'Cook',
+// }
+
+const allProducts = await Product.find(); 
+
+    res.render('../views/pages/index.ejs',{
+        products: allProducts
+    })
+
+// ejs.renderFile('../views/pages/index.ejs', {user:user}, function(err, str){
+//   // str => Rendered HTML string
+//   res.send(str);
+// });
+
+
+//exports.getAllProductsSSR=async (req,res)=>{
+
+  //const allProducts = await Product.find(); 
+//console.log('Prodcts->',allProducts[0]);
+
+//return res.render("home",{product:allProducts[0]});
+
+
+//let ejs = require('ejs');
+//let people = ['geddy', 'neil', 'alex'];
+//let html = ejs.render('<%= people.join(", "); %>', {people: people});
+
+//    ejs.renderFile(path.resolve('home.ejs'),{product:allProducts[0]}, function(err, str){
+//     res.send(str);
+// });
+
+
+//res.sendFile(path.resolve(__dirname,'build','index.html'));
+ 
+};
 
 
 exports.create = async (req, res) => {

@@ -6,6 +6,7 @@ const router=express.Router();
 
 
 router.post('/',productController.create)
+.get('/ssr',productController.getAllProductsSSR)
 .get('/:id',productController.get)
 .get('/',productController.getAll)
 .patch('/:id',productController.update)
